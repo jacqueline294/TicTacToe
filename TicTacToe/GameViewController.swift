@@ -69,7 +69,7 @@ class GameViewController: UIViewController {
                 createTap(on: box8, type: .eight)
                 createTap(on: box9, type: .nine)
             }
-            
+            // at set the tap function
             func createTap(on imageView: UIImageView, type box: Box) {
                 let tap = UITapGestureRecognizer(target: self, action: #selector(self.boxClicked(_:)))
                 tap.name = box.rawValue
@@ -117,7 +117,7 @@ class GameViewController: UIViewController {
                     [.one, .four, .seven], [.two, .five, .eight], [.three, .six, .nine], // colums
                     [.one, .five, .nine], [.three, .five, .seven] // daiagonal
                 ]
-                
+                // check who is the winner or if its a draw
                 for combination in winningCombinations {
                     let playerOneMatch = playerOneChoices.filter { combination.contains($0) }.count
                     let playerTwoMatch = playerTwoChoices.filter { combination.contains($0) }.count
@@ -172,7 +172,7 @@ class GameViewController: UIViewController {
                 case .nine: return box9
                 }
             }
-            
+            // exit the game 
             @IBAction func ExitBtn(_ sender: UIButton) {
                 dismiss(animated: true, completion: nil)
             }

@@ -15,7 +15,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-    
+    // start the game
     @IBAction func startBtnOnClicked(_ sender: UIButton) {
         if shouldPerformSegue(withIdentifier: "goToGameVC", sender: self) {
             performSegue(withIdentifier: "goToGameVC", sender: self)
@@ -32,7 +32,7 @@ class ViewController: UIViewController {
             }
         }
     }
-    
+    // to check if the textfield are filled
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         if identifier == "goToGameVC" {
             return !(player1NameField.text?.trimmingCharacters(in: .whitespaces).isEmpty ?? true) &&
