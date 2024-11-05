@@ -61,11 +61,11 @@
 				D47D4E052C8634070099774A /* AppDelegate.swift */,
 				D47D4E072C8634070099774A /* SceneDelegate.swift */,
 				D47D4E092C8634070099774A /* ViewController.swift */,
+				D47037202C8EFAA9000A926E /* GameViewController.swift */,
 				D47D4E0B2C8634070099774A /* Main.storyboard */,
 				D47D4E0E2C86340A0099774A /* Assets.xcassets */,
 				D47D4E102C86340A0099774A /* LaunchScreen.storyboard */,
 				D47D4E132C86340A0099774A /* Info.plist */,
-				D47037202C8EFAA9000A926E /* GameViewController.swift */,
 			);
 			path = TicTacToe;
 			sourceTree = "<group>";

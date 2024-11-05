@@ -10,51 +10,43 @@ import UIKit
 class ViewController: UIViewController {
     
     @IBOutlet weak var player1NameField: UITextField!
-    
     @IBOutlet weak var player2NameField: UITextField!
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
     }
     
-    // To ensures the segue is triggered once  the conditions are met.
     @IBAction func startBtnOnClicked(_ sender: UIButton) {
         if shouldPerformSegue(withIdentifier: "goToGameVC", sender: self) {
-                    performSegue(withIdentifier: "goToGameVC", sender: self)
-            
-                }
-       
+            performSegue(withIdentifier: "goToGameVC", sender: self)
+        } else {
+            showAlertForEmptyFields()
+        }
     }
     
-    // function to move the input in the textfields of player 1 and player 2
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-            if segue.identifier == "goToGameVC" {
-                if let controller = segue.destination as? GameViewController {
-                    controller.player1Name = player1NameField.text
-                    controller.player2Name = player2NameField.text
-                }
+        if segue.identifier == "goToGameVC" {
+            if let gameVC = segue.destination as? GameViewController {
+                gameVC.player1Name = player1NameField.text ?? "Player 1"
+                gameVC.player2Name = player2NameField.text ?? "Player 2"
             }
         }
-    // function to make user the player has to put in a name before the  game can go to the next viewcontroller
+    }
+    
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-            if identifier == "goToGameVC" {
-                
-                // Check if both player name fields are not empty
-                
-                if player1NameField.text!.trimmingCharacters(in: .whitespaces).isEmpty || player2NameField.text!.trimmingCharacters(in: .whitespaces).isEmpty {
-                    return false
-            }
+        if identifier == "goToGameVC" {
+            return !(player1NameField.text?.trimmingCharacters(in: .whitespaces).isEmpty ?? true) &&
+                   !(player2NameField.text?.trimmingCharacters(in: .whitespaces).isEmpty ?? true)
         }
-        
         return true
     }
-    
-    
-    
+// function to show an alert to enter player names
+    private func showAlertForEmptyFields() {
+        let alert = UIAlertController(title: "Missing Names", message: "Please enter names for both players.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        present(alert, animated: true)
+    }
 }
-    
     
 
 
